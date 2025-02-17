@@ -1,10 +1,9 @@
-const app = angular.module("myApp", ["ui.bootstrap"]);
 
 app.controller("MainCtrl", function ($scope, $uibModal) {
     $scope.openModal = function () {
-        var modalInstance = $uibModal.open({
+        $uibModal.open({
             templateUrl: "modal-template.html",
-            controller: "ModalInstanceCtrl",
+            controller: "ModalController",
 
             resolve: {
                 modalData: function () {
@@ -19,20 +18,11 @@ app.controller("MainCtrl", function ($scope, $uibModal) {
                 }
             }
         });
-
-        modalInstance.result.then(
-            function () {
-                console.log("Modal closed with OK");
-            },
-            function () {
-                console.log("Modal dismissed");
-            }
-        );
     };
 });
 
 
-app.controller("ModalInstanceCtrl", function($scope, $uibModalInstance, modalData) {
+app.controller("ModalController", function($scope, $uibModalInstance, modalData) {
     $scope.modalData = modalData;
     
     $scope.hasError = function() {

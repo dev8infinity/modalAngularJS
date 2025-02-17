@@ -1,24 +1,32 @@
-<div class="modal-header">
-  <h3 class="modal-title">Status da importação</h3>
+<div class="modal-header" style="background-color: rgba(45, 172, 209, .85);">
+  <h4 class="modal-title" style="color: #fff;">Status da importação</h4>
 </div>
-<div class="modal-body">
-  <div ng-repeat="item in modalData.items">
-    <p ng-class="{'text-danger': item.status == 'error', 'text-success': item.status == 'success', 'text-warning': item.status == 'warning'}">
-      <span ng-if="item.status == 'error'" class="glyphicon glyphicon-remove"></span>
-      <span ng-if="item.status == 'success'" class="glyphicon glyphicon-ok"></span>
-      <span ng-if="item.status == 'warning'" class="glyphicon glyphicon-warning-sign"></span>
-
-      <!-- Apply typing effect to each letter -->
-      <span ng-repeat="letter in item.text.split('')" ng-bind="letter"></span>
+<div class="modal-body" style="text-align: center;">
+  <div style="border: 1px solid #7A7A7A;max-height: 600px;margin-top: 10px; background-color: #f5f5f5; border-radius: 5px;">
+    <div ng-repeat="item in modalData.items" >
+      <p ng-class="{'text-danger': item.status == 'error', 'text-success': item.status == 'success', 'text-warning-custom': item.status == 'warning'}" style="text-align: center; font-size: 16px;">
+        <span ng-if="item.status == 'error'" class="glyphicon glyphicon-remove"></span>
+        <span ng-if="item.status == 'success'" class="glyphicon glyphicon-ok"></span>
+        <span ng-if="item.status == 'warning'" class="glyphicon glyphicon-warning-sign"></span>
+  
+        <!-- Apply typing effect to each letter -->
+        <span ng-repeat="letter in item.text.split('')" ng-bind="letter"></span>
+      </p>
+    </div>
+    <p ng-if="!hasError()" style="font-style: italic; font-size: 16px;" class="text-success">
+      Tudo ocorreu bem, sem erros!
+    </p>
+    <p ng-if="hasError()" style="font-style: italic; font-size: 16px;" class="text-danger">
+      Houve um erro durante a importação! Rollback realizado.
     </p>
   </div>
-  <p ng-if="!hasError()" style="font-style: italic;" class="text-success">
-    Tudo ocorreu bem, sem erros!
-  </p>
-  <p ng-if="hasError()" style="font-style: italic;" class="text-danger">
-    Houve um erro durante a importação! Rollback realizado.
-  </p>
 </div>
-<div class="modal-footer">
-  <button class="btn btn-primary" ng-click="closeModal()">OK</button>
+<div class="modal-footer" >
+  <button class="btn btn-danger" ng-click="closeModal()" style="font-size: 16px;">Fechar</button>
 </div>
+
+<style>
+  .text-warning-custom {
+    color: #ffc107;
+  }
+</style>
