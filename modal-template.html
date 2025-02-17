@@ -1,0 +1,24 @@
+<div class="modal-header">
+  <h3 class="modal-title">Status da importação</h3>
+</div>
+<div class="modal-body">
+  <div ng-repeat="item in modalData.items">
+    <p ng-class="{'text-danger': item.status == 'error', 'text-success': item.status == 'success', 'text-warning': item.status == 'warning'}">
+      <span ng-if="item.status == 'error'" class="glyphicon glyphicon-remove"></span>
+      <span ng-if="item.status == 'success'" class="glyphicon glyphicon-ok"></span>
+      <span ng-if="item.status == 'warning'" class="glyphicon glyphicon-warning-sign"></span>
+
+      <!-- Apply typing effect to each letter -->
+      <span ng-repeat="letter in item.text.split('')" ng-bind="letter"></span>
+    </p>
+  </div>
+  <p ng-if="!hasError()" style="font-style: italic;" class="text-success">
+    Tudo ocorreu bem, sem erros!
+  </p>
+  <p ng-if="hasError()" style="font-style: italic;" class="text-danger">
+    Houve um erro durante a importação! Rollback realizado.
+  </p>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" ng-click="closeModal()">OK</button>
+</div>

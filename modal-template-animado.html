@@ -1,0 +1,55 @@
+<div class="modal-header">
+  <h3 class="modal-title">Status da importação animado</h3>
+</div>
+<div class="modal-body">
+  <div ng-repeat="item in modalData.items">
+      <p ng-class="{'text-danger': item.error, 'text-success': !item.error}">
+          <span ng-if="item.error" class="glyphicon glyphicon-remove"></span>
+          <span ng-if="!item.error" class="glyphicon glyphicon-ok"></span>
+
+          <!-- Apply typing effect to each letter -->
+          <span class="typing-container">
+              <span class="typing">
+                  <span ng-repeat="letter in item.text.split('')" ng-bind="letter"></span>
+              </span>
+          </span>
+      </p>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" ng-click="closeModal()">OK</button>
+</div>
+
+<style>
+/* Define the typing effect */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 80%;
+  }
+}
+
+/* Typing effect applied to each text block */
+.typing {
+  display: inline-block;
+  overflow: hidden; /* Hide the letters until they are "typed" */
+  white-space: nowrap;
+  width: 0;
+  animation: typing 3s steps(30) forwards; /* 30 steps and 3s duration */
+}
+
+.typing span {
+  opacity: 1;
+  animation: none; /* Reset any animation on individual letters */
+}
+
+/* Make sure the p element also has a delay applied */
+.typing-container {
+  display: inline-block;
+  animation: typing 3s steps(30) forwards; /* Add animation to the text */
+}
+
+
+</style>
