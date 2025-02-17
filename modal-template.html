@@ -9,8 +9,8 @@
         <span ng-if="item.status == 'success'" class="glyphicon glyphicon-ok"></span>
         <span ng-if="item.status == 'warning'" class="glyphicon glyphicon-warning-sign"></span>
   
-        <!-- Apply typing effect to each letter -->
-        <span ng-repeat="letter in item.text.split('')" ng-bind="letter"></span>
+
+        <span  ng-bind="item.text"></span>
       </p>
     </div>
     <p ng-if="!hasError()" style="font-style: italic; font-size: 16px;" class="text-success">
